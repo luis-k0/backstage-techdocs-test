@@ -50,6 +50,35 @@ end = DummyOperator(task_id='end')
 start >> get_dataset_tables >> end
 ```
 
+```python
+launch_flex_template = DataflowStartFlexTemplateOperator(
+  task_id='launch_flex_template',
+  location='us-east1',
+  body={
+      'launchParameter': {
+          'containerSpecGcsPath': '{{params.gcs_path + "/" + dag_run.conf.get("version") + "/dataflow.json" if \
+                                  dag_run.conf.get("version") is not none else params.flex_template_gcs_path}}',
+          'jobName': f'dataflow-{ENV}',
+          'parameters': {
+              'param': 'param value'
+          },
+          'environment': {
+              'subnetwork': env_vars[ENV]['subnetwork'],
+              'ipConfiguration': 'WORKER_IP_PRIVATE',
+              'tempLocation': '{{params.gcs_path + "/" + dag_run.conf.get("version") + "/tmp" if \
+                              dag_run.conf.get("version") is not none else params.tmp_location}}',
+          }
+      }
+  },
+  params={
+      "gcs_path": gcs_path,
+      "flex_template_gcs_path": flex_template_gcs_path,
+      "staging_location": staging_location,
+      "tmp_location": tmp_location
+  }
+  )
+```
+
 YAML example:
 
 ```yaml

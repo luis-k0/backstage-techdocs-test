@@ -1,10 +1,7 @@
 site_name: 'Techdocs Example'
 
 nav:
-  - Home: index.md
-  - Subpage: sub-page.md
-  - 'Code Sample': code/code-sample.md
-  - Extensions: extensions.md
+  - Home: code/code-sample.md
 
 plugins:
   - techdocs-core

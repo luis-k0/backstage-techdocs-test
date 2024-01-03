@@ -79,6 +79,18 @@ launch_flex_template = DataflowStartFlexTemplateOperator(
   )
 ```
 
+```dotnet
+namespace HelloWorld;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        Console.WriteLine("Hello, World!");
+    }
+}
+```
+
 YAML example:
 
 ```yaml

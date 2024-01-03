@@ -79,7 +79,7 @@ launch_flex_template = DataflowStartFlexTemplateOperator(
   )
 ```
 
-```dotnet
+```cs
 namespace HelloWorld;
 
 class Program
